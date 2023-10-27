@@ -1,5 +1,7 @@
 // @ts-check
-const { test, expect } = require('@playwright/test') ;
+
+
+import {expect, test} from "@playwright/test";
 
 test.beforeAll(async ()=>{
   //
