@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test";
 import WelcomePage from "../../src/pageObjects/welcomePage/WelcomePage.js";
 import { HEADER_LINKS} from "./fixtures/welcome.fixtures.js";
 
-test.describe.only("Guest mode", ()=>{
+test.describe("Guest mode @S09791ac6", ()=>{
     let page
     let welcomePage
     let garagePage
@@ -29,7 +29,7 @@ test.describe.only("Guest mode", ()=>{
         await garagePage.logout()
     })
 
-    test('should contain all required links in header', async ()=>{
+    test('should contain all required links in header @Td447a475', async ()=>{
         const linksText = await garagePage.header.getLinksText()
         expect(linksText, "All required links should be present").toEqual(HEADER_LINKS)
     })

@@ -7,5 +7,10 @@ export const config = {
     httpCredentials: {
         username: process.env.HTTP_CREDENTIALS_USERNAME,
         password: process.env.HTTP_CREDENTIALS_PASSWORD
+    },
+    reporters: {
+        testomat: {
+            key: process.env.TESTOMAT_KEY
+        }
     }
 }
