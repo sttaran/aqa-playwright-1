@@ -2,7 +2,7 @@ import {expect, test} from "@playwright/test";
 import WelcomePage from "../../src/pageObjects/welcomePage/WelcomePage.js";
 import { HEADER_LINKS_WELCOME_PAGE} from "./fixtures/welcome.fixtures.js";
 
-test.describe.only("Welcome page", ()=>{
+test.describe("Welcome page @Sb91d1395", ()=>{
     let page
     let welcomePage
 
@@ -23,12 +23,12 @@ test.describe.only("Welcome page", ()=>{
         await welcomePage.waitLoaded()
     })
 
-    test('should contain all required links in header', async ()=>{
+    test('should contain all required links in header @T869ab183', async ()=>{
         const linksText = await welcomePage.header.getLinksText()
         expect(linksText, "All required links should be present").toEqual(HEADER_LINKS_WELCOME_PAGE)
     })
 
-    test('should contain all required links in header 2', async ()=>{
+    test('should contain all required links in header 2 @T4093675a', async ()=>{
         await welcomePage.header.verifyLinksText(HEADER_LINKS_WELCOME_PAGE)
     })
 })

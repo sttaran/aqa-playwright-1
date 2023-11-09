@@ -27,7 +27,24 @@ const config =  defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html', {open: 'never'}]],
+  reporter: [
+      ['dot'],
+      ['playwright-qase-reporter',
+        {
+          apiToken: '54aa8a4b6a86823aad3bd91584e368a3fb6a306f600d94d5bcb1d529eedd4c4d',
+          projectCode: 'AH',
+          runComplete: true,
+          basePath: 'https://api.qase.io/v1',
+          logging: true,
+          uploadAttachments: true,
+        }],
+      // [
+      //   '@testomatio/reporter/lib/adapter/playwright.js',
+      //   {
+      //     apiKey: testConfig.reporters.testomat.key,
+      //   },
+      // ],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     headless: false,
@@ -39,7 +56,9 @@ const config =  defineConfig({
       height: 840
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
+    screenshot: "only-on-failure",
+    video: "retain-on-failure",
     launchOptions:{
       // slowMo: 1000
     }

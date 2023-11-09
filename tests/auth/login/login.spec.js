@@ -1,10 +1,47 @@
 import {expect, test} from "@playwright/test";
 
-test.describe('Auth @smoke @regression', ()=>{
-    test('Login', async({page})=>{
+test.describe('Auth @smoke @regression @Sc464999d', ()=>{
+    let page
+
+    test.beforeAll(async ({browser})=>{
+        const context = await browser.newContext()
+        page = await context.newPage()
+    })
+
+    test.beforeEach(async() => {
+        await page.goto('/')
+    })
+
+    test("should show error message when user enters wrong password @Te61e6d76", async ()=>{
+        const email = "stastaransa@gmail.com"
+
+        const password = email.split('').reverse().join('')
+
+        const signInButton = page.locator('button.header_signin')
+        await expect(signInButton, "Sign in button should be visible").toBeVisible()
+        await expect(signInButton, "Sign in button should be enabled").toBeEnabled()
+
+        await signInButton.click()
+
+        const popup = page.locator('div.modal-dialog')
+        await expect(popup, "Sign in popup should be visible").toBeVisible()
+
+        const emailInput = popup.locator('input#signinEmail')
+        const passwordInput = popup.locator('input#signinPassword')
+        const loginButton = popup.locator('.btn-primary')
+
+        await emailInput.fill(email)
+        await passwordInput.fill(password)
+        await loginButton.click()
+
+        const alertMessage = popup.locator('p.alert-danger')
+        await expect(alertMessage, "Alert message should be shown when user has entered invalid email").toHaveText('Wrong email or password')
+    })
+
+    test('Login @T56334a2e', async()=>{
         const email = 'staran.test'
         const password = 'password'
-        await page.goto('/')
+
 
         const signInButton = page.locator('button.header_signin')
         await expect(signInButton, "Sign in button should be visible").toBeVisible()
@@ -32,4 +69,6 @@ test.describe('Auth @smoke @regression', ()=>{
 
         await expect(loginButton, "Login button should be disabled when user has entered invalid email").toBeDisabled()
     })
+
+
 })
