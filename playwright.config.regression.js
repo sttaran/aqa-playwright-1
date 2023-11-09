@@ -16,7 +16,7 @@ const config =  defineConfig({
   testMatch: 'tests/**/*.spec.js',
   globalSetup: './globalSetup',
   globalTeardown: './globalTeardown',
-  // grep: /@smoke/,
+  grep: /@regression/,
   timeout: 360_000,
   /* Run tests in files in parallel */
   fullyParallel: false,

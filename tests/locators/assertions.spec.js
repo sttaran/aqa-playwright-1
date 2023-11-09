@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-test.describe('Assertions', ()=>{
+test.describe('Assertions @regression', ()=>{
     test('Regular assertions primitives', async ()=>{
         const actual = 1
         const expected = 2
