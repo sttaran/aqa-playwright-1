@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test'
 import {config as testConfig} from "./config/config.js";
+import {STORAGE_STATE_USER_PATH} from "./src/data/storageState.js";
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -48,6 +49,7 @@ const config =  defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     headless: false,
+    // storageState: STORAGE_STATE_USER_PATH,
     httpCredentials: testConfig.httpCredentials,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: testConfig.baseURL,

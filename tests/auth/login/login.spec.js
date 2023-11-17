@@ -1,5 +1,9 @@
 import {expect, test} from "@playwright/test";
 
+
+// Avoiding using shared storage state
+// test.use({storageState: {cookies: [], origins: []}})
+
 test.describe('Auth @smoke @regression @Sc464999d', ()=>{
     let page
 
