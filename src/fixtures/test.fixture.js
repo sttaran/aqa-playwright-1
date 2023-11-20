@@ -1,8 +1,9 @@
-import {test as base} from "@playwright/test"
+import {test as base, request} from "@playwright/test"
 import ProfilePage from "../pageObjects/profilePage/ProfilePage.js";
 import WelcomePage from "../pageObjects/welcomePage/WelcomePage.js";
 import {USERS} from "../data/dict/users.js";
 import {STORAGE_STATE_USER_PATH} from "../data/storageState.js";
+import GaragePage from "../pageObjects/panel/garagePage/GaragePage.js";
 
 export const test = base.extend({
     headerLinks: ['Garage', 'Fuel expenses', 'Instructions'],
@@ -21,6 +22,25 @@ export const test = base.extend({
 
         //after test
     },
+        userGaragePage: async ({browser}, use)=>{
+            const ctx = await browser.newContext({
+                storageState: STORAGE_STATE_USER_PATH
+            })
+            const page = await ctx.newPage()
+            const garagePage = new GaragePage(page)
+            await garagePage.navigate()
+            await use(garagePage)
+
+            await ctx.close()
+        },
+        userAPIClient: async ({},use)=>{
+            const ctx = await request.newContext({
+                storageState: STORAGE_STATE_USER_PATH
+            })
+            await use(ctx)
+
+           await ctx.dispose()
+        },
     managerProfilePage: async ({page}, use)=>{
         const welcomePage = new WelcomePage(page)
         await welcomePage.navigate()
@@ -34,5 +54,5 @@ export const test = base.extend({
         await profilePage.navigate()
         await use(profilePage)
     },
-}
+    }
 )

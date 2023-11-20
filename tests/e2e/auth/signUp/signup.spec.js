@@ -1,7 +1,7 @@
 import {expect, test} from "@playwright/test";
-import WelcomePage from "../../../src/pageObjects/welcomePage/WelcomePage.js";
-import StringUtils from "../../../src/Utils/StringUtils.js";
-import {USERS} from "../../../src/data/dict/users.js";
+import WelcomePage from "../../../../src/pageObjects/welcomePage/WelcomePage.js";
+import StringUtils from "../../../../src/Utils/StringUtils.js";
+import {USERS} from "../../../../src/data/dict/users.js";
 
 test.describe('Auth', ()=>{
     let page
