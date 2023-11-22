@@ -1,6 +1,6 @@
 import {expect} from "@playwright/test";
-import {test} from '../../src/fixtures/test.fixture.js'
-import WelcomePage from "../../src/pageObjects/welcomePage/WelcomePage.js";
+import {test} from '../../../src/fixtures/test.fixture.js'
+import WelcomePage from "../../../src/pageObjects/welcomePage/WelcomePage.js";
 import { HEADER_LINKS} from "./fixtures/welcome.fixtures.js";
 
 test.describe("Guest mode @S09791ac6", ()=>{

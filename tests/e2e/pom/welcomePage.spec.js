@@ -1,5 +1,5 @@
 import {expect, test} from "@playwright/test";
-import WelcomePage from "../../src/pageObjects/welcomePage/WelcomePage.js";
+import WelcomePage from "../../../src/pageObjects/welcomePage/WelcomePage.js";
 import { HEADER_LINKS_WELCOME_PAGE} from "./fixtures/welcome.fixtures.js";
 
 test.describe("Welcome page @Sb91d1395", ()=>{
