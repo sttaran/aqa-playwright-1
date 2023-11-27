@@ -26,7 +26,7 @@ test.describe("API", ()=>{
      })
     })
 
-    test.only("should return valid brands", async ()=>{
+    test("should return valid brands", async ()=>{
         const response = await client.get('/cars')
         expect(response.status, "Status code should be 200").toEqual(200)
         expect(response.data, "Valid brands should be returned").toEqual(VALID_BRANDS_RESPONSE_BODY)

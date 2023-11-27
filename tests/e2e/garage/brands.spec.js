@@ -25,7 +25,7 @@ test.describe("API", ()=>{
         })
     }
 
-    test.only('should create new car', async ({userAPIClient})=>{
+    test('should create new car', async ({userAPIClient})=>{
         const brandId = VALID_BRANDS_RESPONSE_BODY.data[0].id
         const modelId = VALID_BRAND_MODELS[brandId].data[1].id
 
