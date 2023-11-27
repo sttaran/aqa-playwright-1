@@ -1,37 +1,24 @@
-import axios from "axios";
-import { wrapper } from 'axios-cookiejar-support';
-import { CookieJar } from 'tough-cookie';
 import {test} from "../../src/fixtures/test.fixture.js";
 import {expect} from "@playwright/test";
 import {VALID_BRANDS_RESPONSE_BODY} from "../../src/data/dict/brands.js";
 import {VALID_BRAND_MODELS} from "../../src/data/dict/models.js";
-import {config} from "../../config/config.js";
 import {USERS} from "../../src/data/dict/users.js";
+import APIClient from "../../src/client/APIClient.js";
 
 test.describe("API", ()=>{
     let client
 
     test.beforeAll(async ()=>{
-        const jar = new CookieJar();
-         client = wrapper(axios.create({
-            baseURL: config.apiURL,
-             jar,
-             validateStatus: status => {
-                 return status < 501
-             }
-        }))
-
-     await client.post('/auth/signin', {
-         "email": USERS.JOE_DOU.email,
-         "password": USERS.JOE_DOU.password,
-         "remember": false
-     })
+      client = await APIClient.authenticate(undefined, {
+          "email": USERS.JOE_DOU.email,
+          "password": USERS.JOE_DOU.password,
+          "remember": false
+      })
     })
 
-    test("should return valid brands", async ()=>{
-        const response = await client.get('/cars')
-        console.log(response)
-        // expect(response.status, "Status code should be 200").toEqual(200)
+    test("should return user's cars", async ()=>{
+        const response = await client.cars.getUserCars()
+        expect(response.status, "Status code should be 200").toEqual(200)
         // expect(response.data, "Valid brands should be returned").toEqual(VALID_BRANDS_RESPONSE_BODY)
     })
 
