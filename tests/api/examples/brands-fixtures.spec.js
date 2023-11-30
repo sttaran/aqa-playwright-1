@@ -1,22 +1,31 @@
-import {test} from "../../src/fixtures/test.fixture.js";
+import {test} from "../../../src/fixtures/test.fixture.js";
 import {expect} from "@playwright/test";
-import {VALID_BRANDS_RESPONSE_BODY} from "../../src/data/dict/brands.js";
-import {VALID_BRAND_MODELS} from "../../src/data/dict/models.js";
-import {USERS} from "../../src/data/dict/users.js";
-import APIClient from "../../src/client/APIClient.js";
+import {VALID_BRANDS_RESPONSE_BODY} from "../../../src/data/dict/brands.js";
+import {VALID_BRAND_MODELS} from "../../../src/data/dict/models.js";
+import {USERS} from "../../../src/data/dict/users.js";
 
 test.describe("API", ()=>{
-    let client
-
-    test.beforeAll(async ()=>{
-      client = await APIClient.authenticate(undefined, {
-          "email": USERS.JOE_DOU.email,
-          "password": USERS.JOE_DOU.password,
-          "remember": false
-      })
+    test("should return user's cars", async ({client})=>{
+        test.info().annotations.push({
+            type: 'bug',
+            description: "Known issue"
+        })
+        const response = await client.cars.getUserCars()
+        expect(response.status, "Status code should be 200").toEqual(200)
+        // expect(response.data, "Valid brands should be returned").toEqual(VALID_BRANDS_RESPONSE_BODY)
     })
 
-    test("should return user's cars", async ()=>{
+    test("should return user's cars 2", async ({clientWithUser})=>{
+        const client = await clientWithUser({
+            email: USERS.JOE_DOU.email,
+            password: USERS.JOE_DOU.password,
+        })
+        const response = await client.cars.getUserCars()
+        expect(response.status, "Status code should be 200").toEqual(200)
+        // expect(response.data, "Valid brands should be returned").toEqual(VALID_BRANDS_RESPONSE_BODY)
+    })
+
+    test("should return user's cars 3", async ({clientWithNewUser : client})=>{
         const response = await client.cars.getUserCars()
         expect(response.status, "Status code should be 200").toEqual(200)
         // expect(response.data, "Valid brands should be returned").toEqual(VALID_BRANDS_RESPONSE_BODY)

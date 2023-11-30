@@ -1,5 +1,6 @@
 import BaseController from "./BaseController.js";
 
+
 export default class CarController extends BaseController{
     #CREATE_CAR_PATH = '/cars'
     #GET_USER_CARS_PATH = '/cars'
@@ -7,6 +8,10 @@ export default class CarController extends BaseController{
 
     constructor(options) {
         super(options)
+    }
+
+    async createCar(data){
+        return this._client.post(this.#CREATE_CAR_PATH, data)
     }
 
     async getUserCars(){
