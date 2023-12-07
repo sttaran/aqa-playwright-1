@@ -73,6 +73,4 @@ test.describe('Auth @smoke @regression @Sc464999d', ()=>{
 
         await expect(loginButton, "Login button should be disabled when user has entered invalid email").toBeDisabled()
     })
-
-
 })
