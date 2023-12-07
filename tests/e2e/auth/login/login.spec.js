@@ -39,7 +39,7 @@ test.describe('Auth @smoke @regression @Sc464999d', ()=>{
         await loginButton.click()
 
         const alertMessage = popup.locator('p.alert-danger')
-        await expect(alertMessage, "Alert message should be shown when user has entered invalid email").toHaveText('Wrong email or password')
+        await expect(alertMessage, "Alert message should be shown when user has entered invalid email").toHaveText('Wrong email or password2')
     })
 
     test('Login @T56334a2e', async()=>{
