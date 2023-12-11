@@ -28,7 +28,7 @@ jobs:
           HTTP_CREDENTIALS_PASSWORD: ${{secrets.HTTP_CREDENTIALS_PASSWORD}}
       - name: "Upload artifacts"
         if: failure()
-        uses: actions/checkout@v3
+        uses: actions/upload-artifact@v3
         with:
           name: test-report
           path: playwright-report/
