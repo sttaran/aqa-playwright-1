@@ -29,7 +29,7 @@ const config =  defineConfig({
   workers: 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-      ['html'],
+      ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
       [process.env.CI ? 'github' : 'list']
       // ['playwright-qase-reporter',
       //   {
