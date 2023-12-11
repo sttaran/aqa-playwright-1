@@ -5,14 +5,7 @@ services:
     environment:
       HTTP_CREDENTIALS_USERNAME: ${HTTP_CREDENTIALS_USERNAME}
       HTTP_CREDENTIALS_PASSWORD: ${HTTP_CREDENTIALS_PASSWORD}
+      CI: true
     container_name: "automated-test"
     build:
       context: .
-
-
-#  db:
-#    image: mysql
-#    command: --default-authentication-plugin=mysql_native_password
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: example
