@@ -30,7 +30,8 @@ const config =  defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
       ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
-      [process.env.CI ? 'github' : 'list']
+      // [process.env.CI ? 'github' : 'list']
+      ['list']
       // ['playwright-qase-reporter',
       //   {
       //     apiToken: '54aa8a4b6a86823aad3bd91584e368a3fb6a306f600d94d5bcb1d529eedd4c4d',
