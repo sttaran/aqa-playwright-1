@@ -31,11 +31,13 @@ jobs:
           name: github-pages
           path: playwright-report/
       - name: Fix permissions
+        if: failure()
         run: |
           chmod -c -R +rX "_site/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       - name: Upload Pages artifact
+        if: failure()
         uses: actions/upload-pages-artifact@v2
 
       
