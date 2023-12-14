@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test'
 import {config as testConfig} from "./config/config.js";
-import {STORAGE_STATE_USER_PATH} from "./src/data/storageState.js";
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -17,7 +16,7 @@ const config =  defineConfig({
   testMatch: 'tests/**/*.spec.js',
   globalSetup: './globalSetup',
   globalTeardown: './globalTeardown',
-  // grep: /@smoke/,
+  grep: /@smoke/,
   timeout: 360_000,
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -29,7 +28,9 @@ const config =  defineConfig({
   workers: 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-      ['html'],
+      ['html', {open: process.env.CI ? 'never' : 'on-failure'}],
+      // [process.env.CI ? 'github' : 'list']
+      ['list']
       // ['playwright-qase-reporter',
       //   {
       //     apiToken: '54aa8a4b6a86823aad3bd91584e368a3fb6a306f600d94d5bcb1d529eedd4c4d',
